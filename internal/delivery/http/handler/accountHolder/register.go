@@ -15,6 +15,13 @@ func (h *AccountHolderHandler) RegisterAccount(c *fiber.Ctx) error {
 		})
 	}
 
+	if err := h.validator.Struct(req); err != nil {
+		h.log.Warn("Validation failed", zap.Error(err))
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Required fields are missing or invalid",
+		})
+	}
+
 	response, err := h.accountHolderService.RegisterAccount(c.Context(), &req)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{

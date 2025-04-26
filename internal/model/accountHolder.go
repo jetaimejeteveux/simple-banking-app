@@ -14,9 +14,9 @@ type AccountHolder struct {
 }
 
 type RegisterAccountRequest struct {
-	FullName       string `json:"full_name"`
-	IdentityNumber string `json:"identity_number"`
-	PhoneNumber    string `json:"phone_number"`
+	FullName       string `json:"full_name" validate:"required"`
+	IdentityNumber string `json:"identity_number" validate:"required"`
+	PhoneNumber    string `json:"phone_number" validate:"required"`
 }
 
 type RegisterAccountResponse struct {
