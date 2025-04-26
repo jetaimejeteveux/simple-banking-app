@@ -13,4 +13,6 @@ type RouteConfig struct {
 func Setup(config *RouteConfig) {
 	// Register account holder routes
 	config.App.Post("/v1/daftar", config.V1AccountHolderHandler.RegisterAccount)
+	// Deposit money to account
+	config.App.Post("/v1/tabung", config.V1AccountHolderHandler.Deposit)
 }

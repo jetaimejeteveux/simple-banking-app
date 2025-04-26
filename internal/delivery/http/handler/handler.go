@@ -6,4 +6,5 @@ import (
 
 type IAccountHolderHandler interface {
 	RegisterAccount(ctx *fiber.Ctx) error
+	Deposit(ctx *fiber.Ctx) error
 }

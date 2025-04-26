@@ -10,4 +10,6 @@ type IAccountHolderRepository interface {
 	Register(ctx context.Context, accountHolder *model.AccountHolder) error
 	GetByIdentityNumber(ctx context.Context, identityNumber string) (*model.AccountHolder, error)
 	GetByPhoneNumber(ctx context.Context, phoneNumber string) (*model.AccountHolder, error)
+	GetByAccountNumber(ctx context.Context, accountNumber string) (*model.AccountHolder, error)
+	Update(ctx context.Context, accountHolder *model.AccountHolder) error
 }
