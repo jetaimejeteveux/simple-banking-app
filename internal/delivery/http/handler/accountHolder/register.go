@@ -29,7 +29,5 @@ func (h *AccountHolderHandler) RegisterAccount(c *fiber.Ctx) error {
 		})
 	}
 
-	return c.Status(fiber.StatusOK).JSON(fiber.Map{
-		"account_number": response.AccountNumber,
-	})
+	return c.Status(fiber.StatusOK).JSON(response)
 }
