@@ -35,7 +35,7 @@ func (s *AccountHolderService) RegisterAccount(ctx context.Context, request *mod
 	}
 	if existingAccountHolder != nil {
 		logger.Error("IdentityNumber already exists", zap.String("IdentityNumber", request.IdentityNumber))
-		return nil, err
+		return nil, errors.New("IdentityNumber already exists")
 	}
 
 	// Check if PhoneNumber already exists
@@ -46,7 +46,7 @@ func (s *AccountHolderService) RegisterAccount(ctx context.Context, request *mod
 	}
 	if existingAccountHolder != nil {
 		logger.Error("PhoneNumber already exists", zap.String("PhoneNumber", request.PhoneNumber))
-		return nil, err
+		return nil, errors.New("PhoneNumber already exists")
 
 	}
 
