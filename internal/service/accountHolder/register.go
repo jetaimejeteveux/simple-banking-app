@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/jetaimejeteveux/simple-banking-app/internal/model"
+	"github.com/jetaimejeteveux/simple-banking-app/internal/utils/constants"
 	"github.com/jetaimejeteveux/simple-banking-app/internal/utils/helper"
 	"go.uber.org/zap"
 )
@@ -31,29 +32,28 @@ func (s *AccountHolderService) RegisterAccount(ctx context.Context, request *mod
 	existingAccountHolder, err := s.accountHolderRepo.GetByIdentityNumber(ctx, request.IdentityNumber)
 	if err != nil && !helper.IsRecordNotFound(err) {
 		logger.Error("Error checking IdentityNumber", zap.Error(err))
-		return nil, err
+		return nil, errors.New(constants.IdentityNumberCheckError)
 	}
 	if existingAccountHolder != nil {
 		logger.Error("IdentityNumber already exists", zap.String("IdentityNumber", request.IdentityNumber))
-		return nil, errors.New("IdentityNumber already exists")
+		return nil, errors.New(constants.IdentityNumberExistsError)
 	}
 
 	// Check if PhoneNumber already exists
 	existingAccountHolder, err = s.accountHolderRepo.GetByPhoneNumber(ctx, request.PhoneNumber)
 	if err != nil && !helper.IsRecordNotFound(err) {
 		logger.Error("Error checking PhoneNumber", zap.Error(err))
-		return nil, err
+		return nil, errors.New(constants.PhoneNumberCheckError)
 	}
 	if existingAccountHolder != nil {
 		logger.Error("PhoneNumber already exists", zap.String("PhoneNumber", request.PhoneNumber))
-		return nil, errors.New("PhoneNumber already exists")
-
+		return nil, errors.New(constants.PhoneNumberExistsError)
 	}
 
 	err = s.accountHolderRepo.Register(ctx, accountHolder)
 	if err != nil {
 		logger.Error("Error registering account holder", zap.Error(err))
-		return nil, err
+		return nil, errors.New(constants.RegisterAccountError)
 	}
 
 	return &model.RegisterAccountResponse{
