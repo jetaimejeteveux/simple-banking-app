@@ -12,4 +12,5 @@ type IAccountHolderRepository interface {
 	GetByPhoneNumber(ctx context.Context, phoneNumber string) (*model.AccountHolder, error)
 	GetByAccountNumber(ctx context.Context, accountNumber string) (*model.AccountHolder, error)
 	Update(ctx context.Context, accountHolder *model.AccountHolder) error
+	IsPhoneOrIdentityExist(ctx context.Context, phoneNumber, identityNumber string) (bool, error)
 }

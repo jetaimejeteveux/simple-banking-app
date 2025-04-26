@@ -1,12 +1,12 @@
 package constants
 
 const (
-	IdentityNumberExistsError   = "nik sudah terdaftar"
+	IdentityNumberExistsError   = "NIK sudah terdaftar"
 	PhoneNumberExistsError      = "no_hp sudah terdaftar"
 	AccountNumberExistsError    = "no_rekening sudah terdaftar"
 	AccountNotFoundError        = "no_rekening tidak ditemukan"
 	PhoneNumberNotFoundError    = "no_hp tidak ditemukan"
-	IdentityNumberNotFoundError = "nik tidak ditemukan"
+	IdentityNumberNotFoundError = "NIK tidak ditemukan"
 	InsufficientBalanceError    = "saldo tidak mencukupi"
 	IdentityNumberCheckError    = "Terjadi kesalahan saat memeriksa nomor identitas. Silakan coba lagi nanti."
 	PhoneNumberCheckError       = "Terjadi kesalahan saat memeriksa nomor telepon. Silakan coba lagi nanti."
@@ -18,4 +18,5 @@ const (
 	InvalidRequestError         = "Format data tidak valid. Pastikan semua field sudah benar."
 	MissingFieldError           = "Pastikan semua field yang diperlukan sudah diisi."
 	InvalidAccountNumberError   = "Nomor rekening tidak valid. Silakan periksa nomor rekening yang Anda masukkan."
+	PhoneOrIdentityExistsError  = "Nomor telepon atau NIK sudah terdaftar. Silakan gunakan nomor yang berbeda."
 )
