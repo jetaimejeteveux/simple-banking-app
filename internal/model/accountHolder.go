@@ -30,3 +30,12 @@ type DepositRequest struct {
 type DepositResponse struct {
 	Balance float64 `json:"saldo"`
 }
+
+type WithdrawRequest struct {
+	AccountNumber string  `json:"no_rekening" validate:"required"`
+	Amount        float64 `json:"nominal" validate:"required"`
+}
+
+type WithdrawResponse struct {
+	Balance float64 `json:"saldo"`
+}

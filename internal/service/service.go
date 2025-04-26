@@ -9,4 +9,5 @@ import (
 type IAccountHolderService interface {
 	RegisterAccount(ctx context.Context, request *model.RegisterAccountRequest) (*model.RegisterAccountResponse, error)
 	Deposit(ctx context.Context, request *model.DepositRequest) (*model.DepositResponse, error)
+	Withdraw(ctx context.Context, request *model.WithdrawRequest) (*model.WithdrawResponse, error)
 }

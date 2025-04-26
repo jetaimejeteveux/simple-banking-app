@@ -15,4 +15,6 @@ func Setup(config *RouteConfig) {
 	config.App.Post("/v1/daftar", config.V1AccountHolderHandler.RegisterAccount)
 	// Deposit money to account
 	config.App.Post("/v1/tabung", config.V1AccountHolderHandler.Deposit)
+	// Withdraw money from account
+	config.App.Post("/v1/tarik", config.V1AccountHolderHandler.Withdraw)
 }
