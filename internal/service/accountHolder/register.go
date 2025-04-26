@@ -8,8 +8,8 @@ import (
 	"time"
 
 	"github.com/jetaimejeteveux/simple-banking-app/internal/model"
+	"github.com/jetaimejeteveux/simple-banking-app/internal/utils/helper"
 	"go.uber.org/zap"
-	"gorm.io/gorm"
 )
 
 func (s *AccountHolderService) RegisterAccount(ctx context.Context, request *model.RegisterAccountRequest) (*model.RegisterAccountResponse, error) {
@@ -29,7 +29,7 @@ func (s *AccountHolderService) RegisterAccount(ctx context.Context, request *mod
 
 	// Check if IdentityNumber already exists
 	existingAccountHolder, err := s.accountHolderRepo.GetByIdentityNumber(ctx, request.IdentityNumber)
-	if err != nil && !isRecordNotFound(err) {
+	if err != nil && !helper.IsRecordNotFound(err) {
 		logger.Error("Error checking IdentityNumber", zap.Error(err))
 		return nil, err
 	}
@@ -40,7 +40,7 @@ func (s *AccountHolderService) RegisterAccount(ctx context.Context, request *mod
 
 	// Check if PhoneNumber already exists
 	existingAccountHolder, err = s.accountHolderRepo.GetByPhoneNumber(ctx, request.PhoneNumber)
-	if err != nil && !isRecordNotFound(err) {
+	if err != nil && !helper.IsRecordNotFound(err) {
 		logger.Error("Error checking PhoneNumber", zap.Error(err))
 		return nil, err
 	}
@@ -67,8 +67,4 @@ func (s *AccountHolderService) generateAccountNumber() string {
 
 	// Generate a 12 digit random number with 4 - 4 - 4 format
 	return fmt.Sprintf("%04d-%04d-%04d", r.Intn(10000), r.Intn(10000), r.Intn(10000))
-}
-
-func isRecordNotFound(err error) bool {
-	return errors.Is(err, gorm.ErrRecordNotFound)
 }
