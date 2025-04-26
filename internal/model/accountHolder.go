@@ -20,5 +20,5 @@ type RegisterAccountRequest struct {
 }
 
 type RegisterAccountResponse struct {
-	AccountNumber string `json:"account_number"`
+	AccountNumber string `json:"no_rekening"`
 }
