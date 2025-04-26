@@ -11,21 +11,21 @@ func (h *AccountHolderHandler) RegisterAccount(c *fiber.Ctx) error {
 	if err := c.BodyParser(&req); err != nil {
 		h.log.Warn("Failed to parse request body", zap.Error(err))
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"error": "Invalid request payload",
+			"remark": "Invalid request payload",
 		})
 	}
 
 	if err := h.validator.Struct(req); err != nil {
 		h.log.Warn("Validation failed", zap.Error(err))
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"error": "Required fields are missing or invalid",
+			"remark": "Required fields are missing or invalid",
 		})
 	}
 
 	response, err := h.accountHolderService.RegisterAccount(c.Context(), &req)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"error": "Failed to register account",
+			"remark": "Failed to register account",
 		})
 	}
 
