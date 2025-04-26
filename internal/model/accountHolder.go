@@ -39,3 +39,11 @@ type WithdrawRequest struct {
 type WithdrawResponse struct {
 	Balance float64 `json:"saldo"`
 }
+
+type GetBalanceRequest struct {
+	AccountNumber string `validate:"required"`
+}
+
+type GetBalanceResponse struct {
+	Balance float64 `json:"saldo"`
+}
