@@ -3,17 +3,17 @@ package accountHolderHandler
 import (
 	"github.com/go-playground/validator/v10"
 	"github.com/jetaimejeteveux/simple-banking-app/internal/delivery/http/handler"
-	"github.com/jetaimejeteveux/simple-banking-app/internal/service"
+	accountHolderService "github.com/jetaimejeteveux/simple-banking-app/internal/service/accountHolder"
 	"go.uber.org/zap"
 )
 
 type AccountHolderHandler struct {
-	accountHolderService service.IAccountHolderService
+	accountHolderService accountHolderService.IAccountHolderService
 	log                  *zap.Logger
 	validator            *validator.Validate
 }
 
-func New(accountHolderService service.IAccountHolderService, log *zap.Logger) handler.IAccountHolderHandler {
+func New(accountHolderService accountHolderService.IAccountHolderService, log *zap.Logger) handler.IAccountHolderHandler {
 	return &AccountHolderHandler{
 		accountHolderService: accountHolderService,
 		log:                  log,

@@ -1,4 +1,4 @@
-package repository
+package accountHolderRepository
 
 import (
 	"context"
@@ -6,6 +6,7 @@ import (
 	"github.com/jetaimejeteveux/simple-banking-app/internal/model"
 )
 
+//go:generate mockgen -source=repository.go -destination=repository_mock.go -package=accountHolderRepository
 type IAccountHolderRepository interface {
 	Register(ctx context.Context, accountHolder *model.AccountHolder) error
 	GetByIdentityNumber(ctx context.Context, identityNumber string) (*model.AccountHolder, error)
