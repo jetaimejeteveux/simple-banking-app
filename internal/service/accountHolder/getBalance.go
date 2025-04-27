@@ -3,6 +3,7 @@ package accountHolderService
 import (
 	"context"
 	"errors"
+	"fmt"
 
 	"github.com/jetaimejeteveux/simple-banking-app/internal/model"
 	"github.com/jetaimejeteveux/simple-banking-app/internal/utils/constants"
@@ -16,7 +17,12 @@ func (s *AccountHolderService) GetBalance(ctx context.Context, request *model.Ge
 		zap.String("method", "GetBalance"),
 	)
 
-	accountHolder, err := s.accountHolderRepo.GetByAccountNumber(ctx, request.AccountNumber)
+	formattedAccountNumber := fmt.Sprintf("%s-%s-%s",
+		request.AccountNumber[0:4],
+		request.AccountNumber[4:8],
+		request.AccountNumber[8:12])
+
+	accountHolder, err := s.accountHolderRepo.GetByAccountNumber(ctx, formattedAccountNumber)
 	if err != nil {
 		if helper.IsRecordNotFound(err) {
 			logger.Error("Account not found", zap.String("AccountNumber", request.AccountNumber))
