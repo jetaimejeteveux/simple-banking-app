@@ -6,6 +6,10 @@ import (
 	"github.com/jetaimejeteveux/simple-banking-app/internal/model"
 )
 
-func (r *AccountHolderRepository) Update(ctx context.Context, accountHolder *model.AccountHolder) error {
-	return r.db.WithContext(ctx).Save(accountHolder).Error
+func (r *AccountHolderRepository) UpdateBalance(ctx context.Context, accountNumber string, balance float64) error {
+	return r.db.WithContext(ctx).
+		Model(&model.AccountHolder{}).
+		Where("account_number = ?", accountNumber).
+		Update("balance", balance).
+		Error
 }

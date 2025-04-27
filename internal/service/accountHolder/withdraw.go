@@ -33,7 +33,7 @@ func (s *AccountHolderService) Withdraw(ctx context.Context, request *model.With
 
 	accountHolder.Balance -= request.Amount
 
-	err = s.accountHolderRepo.Update(ctx, accountHolder)
+	err = s.accountHolderRepo.UpdateBalance(ctx, accountHolder.AccountNumber, accountHolder.Balance)
 	if err != nil {
 		logger.Error("Error updating account holder balance", zap.Error(err))
 		return nil, errors.New(constants.WithdrawError)

@@ -115,16 +115,16 @@ func (mr *MockIAccountHolderRepositoryMockRecorder) Register(ctx, accountHolder 
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Register", reflect.TypeOf((*MockIAccountHolderRepository)(nil).Register), ctx, accountHolder)
 }
 
-// Update mocks base method.
-func (m *MockIAccountHolderRepository) Update(ctx context.Context, accountHolder *model.AccountHolder) error {
+// UpdateBalance mocks base method.
+func (m *MockIAccountHolderRepository) UpdateBalance(ctx context.Context, accountNumber string, balance float64) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Update", ctx, accountHolder)
+	ret := m.ctrl.Call(m, "UpdateBalance", ctx, accountNumber, balance)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
-// Update indicates an expected call of Update.
-func (mr *MockIAccountHolderRepositoryMockRecorder) Update(ctx, accountHolder any) *gomock.Call {
+// UpdateBalance indicates an expected call of UpdateBalance.
+func (mr *MockIAccountHolderRepositoryMockRecorder) UpdateBalance(ctx, accountNumber, balance any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Update", reflect.TypeOf((*MockIAccountHolderRepository)(nil).Update), ctx, accountHolder)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateBalance", reflect.TypeOf((*MockIAccountHolderRepository)(nil).UpdateBalance), ctx, accountNumber, balance)
 }
