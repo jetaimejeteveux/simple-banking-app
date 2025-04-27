@@ -9,7 +9,7 @@ import (
 
 func (h *AccountHolderHandler) Withdraw(ctx *fiber.Ctx) error {
 	var request model.WithdrawRequest
-	if err := ctx.BodyParser(request); err != nil {
+	if err := ctx.BodyParser(&request); err != nil {
 		h.log.Warn("Failed to parse request body", zap.Error(err))
 		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"remark": constants.InvalidRequestError,
